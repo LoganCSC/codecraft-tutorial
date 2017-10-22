@@ -1,5 +1,8 @@
+package tutorial
+
 import cwinter.codecraft.core.api._
 import cwinter.codecraft.util.maths.Vector2
+
 import scala.util.Random
 
 

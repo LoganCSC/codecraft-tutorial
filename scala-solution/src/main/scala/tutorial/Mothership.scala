@@ -1,3 +1,5 @@
+package tutorial
+
 import cwinter.codecraft.core.api._
 
 
