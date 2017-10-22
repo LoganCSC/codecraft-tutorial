@@ -19,7 +19,7 @@ class Soldier extends DroneController {
       case None =>
         if (!isMoving) {
           val randomDirection = Vector2(2 * math.Pi * Random.nextDouble())
-          val targetPosition = position + 500 * randomDirection
+          val targetPosition = position + 300 * randomDirection
           moveTo(targetPosition)
         }
     }
