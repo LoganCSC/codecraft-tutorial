@@ -1,14 +1,9 @@
 package experiment1
 
-import Constructor.RND
+import Global.RND
 import cwinter.codecraft.util.maths.Vector2
 
 import scala.util.Random
-
-
-object Constructor {
-  val RND = new Random()
-}
 
 
 class Constructor extends Mothership {
@@ -18,12 +13,13 @@ class Constructor extends Mothership {
 
       val r = RND.nextDouble()
       if (r < 0.5) {
-        buildDrone(new Harvester(this), storageModules = 2)
-        nHarvesters += 1
+        val h = new Harvester(Global.getRandomMother)
+        buildDrone(h, storageModules = 2)
+        Global.harvesters += h
       }
       else  {
         buildDrone(new Soldier, missileBatteries = 2, shieldGenerators = 1)
-        nSoldiers += 1
+        Global.nSoldiers += 1
       }
 
       if (!isMoving) {

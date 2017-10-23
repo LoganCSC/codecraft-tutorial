@@ -2,13 +2,10 @@ package experiment1
 
 import cwinter.codecraft.core.api._
 import cwinter.codecraft.util.maths.Vector2
-import Harvester._
+import Global._
 import scala.util.Random
 
-object Harvester {
-  var KNOWN_MINERALS: Set[MineralCrystal] = Set()
 
-}
 
 class Harvester(mothership: Mothership) extends DroneController {
 
@@ -16,7 +13,7 @@ class Harvester(mothership: Mothership) extends DroneController {
     if (!isMoving && !isHarvesting) {
       if (availableStorage == 0) moveTo(mothership)
       else {
-        val candidateMinerals = KNOWN_MINERALS.filter(m => m.size > 0 && !m.harvested)
+        val candidateMinerals = knownMinerals.filter(m => m.size > 0 && !m.harvested)
         if (candidateMinerals.isEmpty) {
           val randomDirection = Vector2(2 * math.Pi * Random.nextDouble())
           val targetPosition = position + 400 * randomDirection
@@ -25,8 +22,8 @@ class Harvester(mothership: Mothership) extends DroneController {
           // instead of moving randomly go to known mineral
           val targetMineral = candidateMinerals.minBy(m => (m.position - position).lengthSquared)
           moveTo(targetMineral)
-          KNOWN_MINERALS = candidateMinerals - targetMineral
-          println("new num minerals = " + KNOWN_MINERALS.size)
+          knownMinerals = candidateMinerals - targetMineral
+          println("new num minerals = " + knownMinerals.size)
         }
       }
     }
@@ -34,8 +31,14 @@ class Harvester(mothership: Mothership) extends DroneController {
 
   override def onMineralEntersVision(mineral: MineralCrystal) = {
     if (mineral.size > 0 && !mineral.harvested) {
-      KNOWN_MINERALS += mineral
+      knownMinerals += mineral
       if (availableStorage > 0) moveTo(mineral)
+    }
+  }
+
+  override def onDroneEntersVision(drone: Drone): Unit = {
+    if (drone.isEnemy) {
+      enemies += drone
     }
   }
 
@@ -44,7 +47,7 @@ class Harvester(mothership: Mothership) extends DroneController {
   override def onArrivesAtDrone(drone: Drone) = giveResourcesTo(drone)
 
   override def onDeath(): Unit = {
-    mothership.nHarvesters -= 1
+    Global.harvesters -= this
   }
 }
 
