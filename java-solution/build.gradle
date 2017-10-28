@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: "maven"
+
+repositories {
+    mavenCentral()
+    ivy {
+        layout "ivy"
+        url "file://${System.properties['user.home']}/.ivy2/local"
+    }
+}
+
+dependencies {
+    compile group: 'org.codecraftgame', name: 'codecraft_2.11', version: '0.6.1', configuration:'compile'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+task runMain(type: JavaExec, description: "Run Java Game") {
+    group = 'application'
+    main = 'Main'
+    classpath = sourceSets.main.runtimeClasspath
+    enableAssertions = true
+}
+
+
+sourceCompatibility = 1.8
+group 'org.codecraftgame'
+version = '1.0-SNAPSHOT'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'codecraft-java-template',
+                   'Implementation-Version': version
+    }
+}

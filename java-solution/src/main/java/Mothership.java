@@ -1,8 +1,8 @@
 import cwinter.codecraft.core.api.*;
 
 class Mothership extends JDroneController {
-  static final DroneSpec HARVESTER_SPEC = new DroneSpec().withStorageModules(2);
-  static final DroneSpec SOLDIER_SPEC = new DroneSpec().withMissileBatteries(3).withShieldGenerators(1);
+  private static final DroneSpec HARVESTER_SPEC = new DroneSpec().withStorageModules(2);
+  private static final DroneSpec SOLDIER_SPEC = new DroneSpec().withMissileBatteries(3).withShieldGenerators(1);
   int nHarvesters = 0;
 
 

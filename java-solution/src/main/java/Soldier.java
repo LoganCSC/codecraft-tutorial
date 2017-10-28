@@ -4,7 +4,7 @@ import java.util.Random;
 
 
 class Soldier extends JDroneController {
-  static Random rng = new Random();
+  private static Random rng = new Random();
 
 
   @Override public void onTick() {
