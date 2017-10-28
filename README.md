@@ -6,7 +6,13 @@ If you encounter a bug, have a question, or want to give feedback you can go on 
 
 ## Basics
 
-To get things set up, you need to create a new project and add the [CodeCraft library](http://search.maven.org/#artifactdetails%7Corg.codecraftgame%7Ccodecraft_2.11%7C0.6.0%7C) as a dependency (in sbt: `libraryDependencies += "org.codecraftgame" % "codecraft_2.11" % "0.6.0"`).
+First decide if you will use Java or Scala. There are 4 different sub-projects. Two for java (template and solution), and two for scala (template and solution).
+Open the template project for your selected language in Intellij (or eclipse) if you want to work through the tutorial from the very beginning.
+Open the solution project if you want to start from where the tutorial ends. At the end of the tutorial, you will have a player than can beat the first level AI (runLevel1).
+
+The simplest way to proceed is probably just to fork the codecraft-tutorial into your of GitHub account. Just be aware that whatever solution you come up with will be visible to everyone. If you want to keep things more private, you could consider using BitBucket to host your repository.
+
+If you are starting from scratch, with a completely separate project, create the new project and then add the [CodeCraft library](http://search.maven.org/#artifactdetails%7Corg.codecraftgame%7Ccodecraft_2.11%7C0.6.1%7C) as a dependency (in sbt: `libraryDependencies += "org.codecraftgame" % "codecraft_2.11" % "0.6.1"`).
 An implementation of the setup described in this section can be found in the folders scala-template and java-template.
 
 The main entry point into the game is the `TheGameMaster` object.
